@@ -1,0 +1,39 @@
+classDiagram
+    class Transaction {
+        -Date date
+        -String type
+        -double amount
+        -double BalanceAfterTransaction
+        +Transaction(String type, double amount, double BalanceAfterTransaction)
+        +getDate() Date
+        +getType() String
+        +getAmount() double
+        +getBalanceAfterTransaction() double
+    }
+
+    class BankAccount {
+        -String AccountHolderName
+        -double Balance
+        -double MonthlyInterestRate
+        -List~Transaction~ Transactions
+        -int WithdrawalsThisMonth
+        -static final int MAX_WITHDRAWALS
+        +BankAccount(String AccountHolderName, double InitialBalance)
+        +getAccountHolderName() String
+        +getBalance() double
+        +getMonthlyInterestRate() double
+        +getWithdrawalsThisMonth() int
+        +resetMonthlyWithdrawals() void
+        +SetMonthlyInterestRate(double rate) void
+        +deposit(double amount) void
+        +withdrawals(double amount) void
+        +MonthlyInterest() void
+        +PrintTransactionsLog() void
+    }
+
+    class Main {
+        +main(String[] args) void$
+    }
+
+    BankAccount "1" *-- "many" Transaction : contains
+    Main .. BankAccount : uses
